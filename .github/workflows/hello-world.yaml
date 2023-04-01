@@ -3,7 +3,6 @@ name: Hello World
 on:
   pull_request:
     types: [opened]
-  push:
 
 jobs:
   build:
