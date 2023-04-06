@@ -10,6 +10,11 @@ project = PythonProject(
         'fastapi',
         'uvicorn[standard]'
     ],
+    dev_deps=[
+        'attrs',
+        'pylint',
+        'pytest',
+    ],
     github=False,
 )
 
