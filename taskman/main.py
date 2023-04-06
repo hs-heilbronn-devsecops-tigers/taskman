@@ -2,8 +2,9 @@
 from typing import Dict, List
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
+
 
 app = FastAPI()
 
@@ -20,7 +21,7 @@ class Task(TaskRequest):
 tasks: Dict[str, Task] = {}
 
 @app.get('/')
-def home(response_class=HTMLResponse):
+def home():
     html_content = """ <html>
         <head>
             <title>Some HTML in here</title>
@@ -31,7 +32,7 @@ def home(response_class=HTMLResponse):
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
-  
+
 
 @app.get('/tasks')
 def get_tasks() -> List[Task]:
