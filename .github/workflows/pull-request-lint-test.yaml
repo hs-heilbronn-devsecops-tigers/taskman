@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+#Use pylint to analyse code 
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
@@ -25,6 +25,8 @@ jobs:
       - name: Lint with pylint
         run: pylint taskman
 
+#Install pytest and runt tests 
+#Use pytest-cov to measure test coverage 
   test:
     runs-on: ubuntu-latest
     
