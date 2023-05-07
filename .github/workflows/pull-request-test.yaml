@@ -1,6 +1,7 @@
 name: Run test suite on PR
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened]
 
@@ -11,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: set up Python 
+      - name: set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
