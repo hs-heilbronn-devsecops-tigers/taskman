@@ -10,3 +10,9 @@ jobs:
     uses: ./.github/workflows/lint.yaml
   test:
     uses: ./.github/workflows/test.yaml
+  security:
+    permissions:
+      security-events: write
+    uses: ./.github/workflows/snyk.yaml
+    secrets:
+      snyk_token: ${{secrets.SNYK_TOKEN}}
