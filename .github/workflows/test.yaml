@@ -1,9 +1,7 @@
 name: Run test suite on PR
 
 on:
-  workflow_dispatch:
-  pull_request:
-    types: [opened]
+  workflow_call:
 
 jobs:
   test:

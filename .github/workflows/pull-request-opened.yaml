@@ -1,0 +1,12 @@
+name: Pull request build/test
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened]
+
+jobs:
+  build:
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/lint.yaml
+  test:
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/test.yaml

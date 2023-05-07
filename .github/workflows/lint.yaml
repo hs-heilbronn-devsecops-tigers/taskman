@@ -1,8 +1,7 @@
 name: Python package
 
 on:
-  pull_request:
-    types: [opened]
+  workflow_call:
 
 jobs:
   build:

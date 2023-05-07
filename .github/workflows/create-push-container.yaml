@@ -1,8 +1,7 @@
 name: Create and publish Docker image
 
 on:
-  push:
-    branches: ['main', 'create_push_container']
+  workflow_call:
 
 env:
   REGISTRY: ghcr.io
@@ -10,7 +9,6 @@ env:
 
 jobs:
   build-and-push-image:
-    needs: ["build", "test", "security"]
     runs-on: ubuntu-latest
     permissions:
       packages: write

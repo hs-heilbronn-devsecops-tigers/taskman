@@ -1,0 +1,19 @@
+name: Main branch pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/lint.yaml
+  test:
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/test.yaml
+  security:
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/snyk.yaml
+    with:
+      snyk-token: {{secrets.SNYK_TOKEN}}
+  container:
+    needs: ["build", "test", "security"]
+    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/create-push-container.yaml
