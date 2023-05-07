@@ -1,5 +1,6 @@
 name: snyk python analysis
 on:
+  workflow_dispatch:
   push:
   pull_request:
 
