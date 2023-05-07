@@ -12,7 +12,7 @@ jobs:
     uses: ./.github/workflows/test.yaml
   security:
     uses: ./.github/workflows/snyk.yaml
-    with:
+    secrets:
       snyk-token: ${{secrets.SNYK_TOKEN}}
   container:
     needs: ["build", "test", "security"]
