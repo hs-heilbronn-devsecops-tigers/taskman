@@ -4,7 +4,6 @@ on:
     secrets:
       snyk_token:
         required: true
-        type: string
 
 jobs:
   security:
