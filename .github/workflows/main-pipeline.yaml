@@ -13,7 +13,7 @@ jobs:
   security:
     uses: ./.github/workflows/snyk.yaml
     with:
-      snyk-token: {{secrets.SNYK_TOKEN}}
+      snyk-token: ${{secrets.SNYK_TOKEN}}
   container:
     needs: ["build", "test", "security"]
     uses: ./.github/workflows/create-push-container.yaml
