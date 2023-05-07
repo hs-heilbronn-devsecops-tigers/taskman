@@ -3,7 +3,7 @@ name: Main branch pipeline
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ["main", "create_push_container"]
 
 jobs:
   build:
