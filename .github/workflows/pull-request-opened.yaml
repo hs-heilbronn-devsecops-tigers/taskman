@@ -7,6 +7,6 @@ on:
 
 jobs:
   build:
-    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/lint.yaml
+    uses: ./.github/workflows/lint.yaml
   test:
-    uses: hs-heilbronn-devsecops-tigers/taskman/.github/workflows/test.yaml
+    uses: ./.github/workflows/test.yaml
