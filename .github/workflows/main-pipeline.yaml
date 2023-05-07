@@ -11,6 +11,8 @@ jobs:
   test:
     uses: ./.github/workflows/test.yaml
   security:
+    permissions:
+      security-events: write1
     uses: ./.github/workflows/snyk.yaml
     secrets:
       snyk_token: ${{secrets.SNYK_TOKEN}}
