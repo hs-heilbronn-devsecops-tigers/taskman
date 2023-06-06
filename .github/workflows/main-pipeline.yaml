@@ -3,7 +3,7 @@ name: Main branch pipeline
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ["main", "cloudrun"]
 
 jobs:
   build:
@@ -20,4 +20,10 @@ jobs:
     permissions:
       packages: write
     needs: ["build", "test", "security"]
-    uses: ./.github/workflows/create-push-container.yaml
+      uses: ./.github/workflows/create-push-container.yaml
+  cloudrun:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    uses: ./.github/workflows/cloudrun.yaml
+    needs: ["container"]
