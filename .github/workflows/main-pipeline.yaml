@@ -21,3 +21,13 @@ jobs:
       packages: write
     needs: ["build", "test", "security"]
     uses: ./.github/workflows/create-push-container.yaml
+    secrets:
+      DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+
+  cloudrun:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    uses: ./.github/workflows/cloudrun.yaml
+    needs: ["container"]
