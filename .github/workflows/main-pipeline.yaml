@@ -20,7 +20,7 @@ jobs:
     permissions:
       packages: write
     needs: ["build", "test", "security"]
-      uses: ./.github/workflows/create-push-container.yaml
+    uses: ./.github/workflows/create-push-container.yaml
   cloudrun:
     permissions:
       contents: 'read'
