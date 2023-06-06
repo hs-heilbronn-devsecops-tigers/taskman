@@ -23,6 +23,6 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: 'taskman-hs-heilbronn-devsecops-tigers'
-        image: 'ghcr.io/hs-heilbronn-devsecops-tigers/taskman:latest'
+        source: .
         env_vars: BACKEND=memory
 
