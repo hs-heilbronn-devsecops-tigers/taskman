@@ -22,8 +22,8 @@ jobs:
     needs: ["build", "test", "security"]
     uses: ./.github/workflows/create-push-container.yaml
     secrets:
-      username: ${{ secrets.DOCKER_USERNAME }}
-      password: ${{ secrets.DOCKER_PASSWORD }}
+      DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
 
   cloudrun:
     permissions:
