@@ -25,4 +25,5 @@ jobs:
         service: 'taskman-hs-heilbronn-devsecops-tigers'
         source: .
         env_vars: BACKEND=memory
+        region: 'europe-west3'
 
