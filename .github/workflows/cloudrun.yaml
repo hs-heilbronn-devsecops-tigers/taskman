@@ -23,7 +23,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: 'taskman-hs-heilbronn-devsecops-tigers'
-        image: 'docker.io/gastonmagnin/hs-heilbronn-devsecops-tigers-taskman:cloudrun'
+        image: 'docker.io/gastonmagnin/hs-heilbronn-devsecops-tigers-taskman:main'
         env_vars: BACKEND=memory
         region: 'europe-west3'
 
