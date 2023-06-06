@@ -6,7 +6,7 @@ on:
 
 jobs:
   upload_to_cloudrun:
-
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       id-token: 'write'
