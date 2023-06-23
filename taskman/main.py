@@ -54,6 +54,7 @@ def redirect_to_tasks() -> None:
 
 @app.get("/tasks")
 def get_tasks(backend: Annotated[Backend, Depends(get_backend)]) -> List[Task]:
+    print("getting tasks")
     with tracer.start_as_current_span('get_tasks'):
       keys = backend.keys()
 
