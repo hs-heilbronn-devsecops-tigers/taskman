@@ -9,6 +9,8 @@ jobs:
   build:
     uses: ./.github/workflows/lint.yaml
   test:
+    permissions:
+      id-token: 'write'
     uses: ./.github/workflows/test.yaml
   security:
     permissions:
