@@ -14,6 +14,7 @@ project = PythonProject(
         'opentelemetry-api',
         'opentelemetry-sdk',
         'opentelemetry-instrumentation-fastapi',
+        'opentelemetry-exporter-gcp-trace',
     ],
     dev_deps=[
         'attrs',
