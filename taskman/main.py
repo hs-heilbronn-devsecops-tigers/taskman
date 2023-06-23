@@ -6,9 +6,6 @@ from typing_extensions import Annotated
 
 from fastapi import Depends, FastAPI
 from starlette.responses import RedirectResponse
-from .backends import Backend, RedisBackend, MemoryBackend, GCSBackend
-from .model import Task, TaskRequest
-
 from opentelemetry import trace
 from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
@@ -17,6 +14,8 @@ from opentelemetry.sdk.trace.export import (
     ConsoleSpanExporter,
 )
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from .backends import Backend, RedisBackend, MemoryBackend, GCSBackend
+from .model import Task, TaskRequest
 
 
 app = FastAPI()
@@ -38,21 +37,22 @@ my_backend: Optional[Backend] = None
 def get_backend() -> Backend:
     global my_backend  # pylint: disable=global-statement
     if my_backend is None:
-        backend_type = getenv('BACKEND', 'redis')
-        if backend_type == 'redis':
+        backend_type = getenv("BACKEND", "redis")
+        if backend_type == "redis":
             my_backend = RedisBackend()
-        elif backend_type == 'gcs':
+        elif backend_type == "gcs":
             my_backend = GCSBackend()
         else:
             my_backend = MemoryBackend()
     return my_backend
 
 
-@app.get('/')
+@app.get("/")
 def redirect_to_tasks() -> None:
-    return RedirectResponse(url='/tasks')
+    return RedirectResponse(url="/tasks")
 
-@app.get('/tasks')
+
+@app.get("/tasks")
 def get_tasks(backend: Annotated[Backend, Depends(get_backend)]) -> List[Task]:
     keys = backend.keys()
 
@@ -62,22 +62,24 @@ def get_tasks(backend: Annotated[Backend, Depends(get_backend)]) -> List[Task]:
     return tasks
 
 
-@app.get('/tasks/{task_id}')
-def get_task(task_id: str,
-             backend: Annotated[Backend, Depends(get_backend)]) -> Task:
+@app.get("/tasks/{task_id}")
+def get_task(task_id: str, backend: Annotated[Backend, Depends(get_backend)]) -> Task:
     return backend.get(task_id)
 
 
-@app.put('/tasks/{item_id}')
-def update_task(task_id: str,
-                request: TaskRequest,
-                backend: Annotated[Backend, Depends(get_backend)]) -> None:
+@app.put("/tasks/{item_id}")
+def update_task(
+    task_id: str,
+    request: TaskRequest,
+    backend: Annotated[Backend, Depends(get_backend)],
+) -> None:
     backend.set(task_id, request)
 
 
-@app.post('/tasks')
-def create_task(request: TaskRequest,
-                backend: Annotated[Backend, Depends(get_backend)]) -> str:
+@app.post("/tasks")
+def create_task(
+    request: TaskRequest, backend: Annotated[Backend, Depends(get_backend)]
+) -> str:
     task_id = str(uuid4())
     backend.set(task_id, request)
     return task_id
