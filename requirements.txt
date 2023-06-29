@@ -7,3 +7,4 @@ opentelemetry-instrumentation-fastapi
 opentelemetry-sdk
 redis
 uvicorn[standard]
+setuptools>=65.5.1 
